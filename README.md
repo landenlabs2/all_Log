@@ -1,4 +1,4 @@
-### Android Dev Stuff v1.9.1
+### Android ALog v1.1
 
 ***apk v1.1  available in app directory.***
 
