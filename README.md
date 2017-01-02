@@ -24,7 +24,7 @@ only occur if logging is required.
 
 ***
 Overview
-***
+
 The core class ALog is an enumeration. Using an enueration any memory allocation
 of the class occurs at startup and subsequent use is light-weight accessing
 the singleton instance.
@@ -35,12 +35,31 @@ which can be used in code classes or packages to manage common actions such as
 Network access, Parsing XML, Fragments, etc. 
 
 
- 
- 
+***
+Example Syntax
+
+AppLog.LOG.i().tag("Test-l").msg("Log - fixed test");
+AppLog.LOG_FRAG.i().msg("Frag fixed test");
+AppLog.LOGFILE.e().tag("Test-f").msg("LogFile - fixed Test");
+
+// Low level - logging samples.
+ALog.d.msg("#debug log this message");
+ALog.d.tag("myTag1").msg("#debug log this message");
+ALog.d.tagMsg("myTag2", "#debug log this message");
+ALog.e.tag("MyClassTag").fmt("#error First:%s Last:%s", "First", "Last");
+i.out(Default).tag("FooBar").cat(" ", "Info-", "Log", "to", "a", "file");
+
+w.tag("myTag3");
+w.msg("with tag3, msg1");
+w.msg("with tag3, msg2");
+
+Exception ex = new Exception("test exception");
+ALog.e.tr(ex);
+
 ***
 Text Page - shows default fonts and sample sizes:
 
-![Text](http://landenlabs.com//android/devstuff/text.jpg)
+![Text](http://landenlabs.com//android/all_log/foo.jpg)
 
 
 
