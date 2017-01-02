@@ -5,7 +5,7 @@
 WebSite
 [http://landenlabs.com/android/alog/index.html](http://landenlabs.com/android/alog/index.html)
 
-![DevTool](http://landenlabs.com//android/alog/alog.png)
+![ALog](http://landenlabs.com//android/alog/alog.png)
 
 ALog is an Android Log wrapper which has the following features:
 
