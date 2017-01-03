@@ -39,6 +39,15 @@ Optional Extended abstraction classes (files):
 ***
 ALog
 
+ALog is the main log wrapper class which supports the standard priority levels:
+* (2) Verbose    
+* (3) Debug
+* (4) Info
+* (5) Warning
+* (6) Error
+* (7) Assert
+
+
 <pre>
 public enum ALog {
 
@@ -54,13 +63,8 @@ public enum ALog {
     . . . 
 </pre>
 
-ALog's enumeration provides easy access to the standard log level priorities:
-* (2) Verbose    
-* (3) Debug
-* (4) Info
-* (5) Warning
-* (6) Error
-* (7) Assert
+
+ALog enumeration includes chainable methods to configure output.
 
 Example Syntax of ALog
 
