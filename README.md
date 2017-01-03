@@ -9,7 +9,7 @@ WebSite
 
 ALog is an Android Log wrapper which has the following features:
 
->   1. Small \- Four small classes, only two required.
+>   1. Small \- Four small classes, only one required.
 
 >   2. Light weight \- No explict memory allocations. 
 
@@ -33,9 +33,11 @@ Core class:
 
 Optional Extended abstraction classes (files):
 * ALogOut - Output target abstraction to support alternate targets such as private file.
-* ALogFileWriter - Implementation of private file logger target.
+* ALogFileWriter - Implementation of private output file target.
 * AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
 
+***
+ALog
 
 <pre>
 public enum ALog {
