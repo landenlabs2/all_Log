@@ -58,27 +58,37 @@ public enum ALog {
     // Logging levels (2=V, 3=D, 4=I, 5=W 6=E 7=A)
 
     // Log levels to system log file.
-    v(Log.VERBOSE),
-    d(Log.DEBUG),
-    i(Log.INFO),
-    w(Log.WARN),
-    e(Log.ERROR),
-    a(Log.ASSERT),
-    none(Log.ASSERT+1),
+    v(ALog.VERBOSE),
+    d(ALog.DEBUG),
+    i(ALog.INFO),
+    w(ALog.WARN),
+    e(ALog.ERROR),
+    a(ALog.ASSERT),
+    none(ALog.ASSERT+1),
 
     // Log levels to private log file.
-    fv(Log.VERBOSE, ALogFileWriter.Default),
-    fd(Log.DEBUG, ALogFileWriter.Default),
-    fi(Log.INFO, ALogFileWriter.Default),
-    fw(Log.WARN, ALogFileWriter.Default),
-    fe(Log.ERROR, ALogFileWriter.Default),
-    fa(Log.ASSERT, ALogFileWriter.Default),
+    fv(ALog.VERBOSE, ALogFileWriter.Default),
+    fd(ALog.DEBUG, ALogFileWriter.Default),
+    fi(ALog.INFO, ALogFileWriter.Default),
+    fw(ALog.WARN, ALogFileWriter.Default),
+    fe(ALog.ERROR, ALogFileWriter.Default),
+    fa(ALog.ASSERT, ALogFileWriter.Default),
     ;
+
+    /**
+     * Log levels (priorites)
+     */
+    public static final int VERBOSE = Log.VERBOSE;
+    public static final int DEBUG = Log.DEBUG;
+    public static final int INFO = Log.INFO;
+    public static final int WARN = Log.WARN;
+    public static final int ERROR = Log.ERROR;
+    public static final int ASSERT = Log.ASSERT;
 
     /**
      * Minimum level to log.
      */
-    public static int minLevel = Log.DEBUG;
+    public static int minLevel = VERBOSE;
 
     private final int mLevel;
     private final ALogOut mOut = new ALogOut();
