@@ -113,13 +113,13 @@ The following methods cause an immediate printing of the log message if logging 
 
 Method | Description
 ------ | -----------
-msg(String msgStr) | Print msgStr using current tag to log target. 
+msg(String msgStr) | Print msgStr using current tag to log target
 msg(String msgStr, Throwable tr) | Print msgStr using current tag to log target along with Throwable stack trace
-tagMsg(String tagStr, String msgStr) | Print tag  and 
-cat(String separator, Object... args) | Print concatenaated objects. 
+tagMsg(String tagStr, String msgStr) | Print tag  and message
+cat(String separator, Object... args) | Print concatenaated objects
 fmt(String fmt, Object... args) | Print formatted objects
 
-Example when Tag set once and default on subsequent calls:
+Example when Tag set once in a thread and multiple logs generate without setting tag:
 
 Call | Logged message
 -----| --------------
@@ -139,10 +139,11 @@ AppLog
 
 
 This implementation futher extends the logging by wrapping ALog in another 
-enumeration called <b>AppLog</b>.  The AppLog enumeration is used to create named loggers
-which can be used to log  common actions such as Network access, Parsing XML, Fragments, etc.
+enumeration called <b>AppLog</b>.  The AppLog enumeration is used to create and manage named loggers
+which can be used by common code or actions such as Network access, Parsing XML, Fragments, etc.
 The AppLog enumeration futher extends the logging flavors by supporting alternate
-logging destinations, such as a private log file or No Logging. 
+logging destinations, such as a private log file or No Logging. By configuring these named
+loggers you can control which features in your code are actively logging and where they log.
 
 ```java
 public enum AppLog {
@@ -176,14 +177,90 @@ public enum AppLog {
 
 ```
 
-Example of using hire level Application level wrapper which provides flavors of logging which gives
+Example of using higher level Application level wrapper which provides flavors of logging which gives
 an added level of abstraction to setup default behavior.
 
 
-Call | Logged message
------| --------------
-AppLog.LOG.i().tag("TestTag").msg("Log fixed test"); |
-AppLog.LOG_FRAG.i().self().msg("Frag fixed test"); |
-AppLog.LOGFILE.e().tag("LogFile").msg("LogFile fixed Test"); |
+```java
+AppLog.LOG.i().tag("TestTag").msg("Log fixed test");
+AppLog.LOG_FRAG.i().self().msg("Frag fixed test");
+AppLog.LOGFILE.e().tag("LogFile").msg("LogFile fixed Test");
+```
+
+***
+Install
+
+Since ALog is just a single enumeration class you just need to include the file in your project. 
+
+To use the full implemenation copy all four files in the alog subdirectory into your project and tune
+the AppLog enumeration to your needs. 
+
+The private log fie target <b>ALogFileWriter</b> requires initialization to create the file. Call
+init(Context) on this class in your startup code.
+
+```java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        // Initialize ALog private log file target.
+        ALogFileWriter.init(this);
+```
+
+***
+Build
+
+No special building is required.  Just include the files in your Android project.
+
+Core class:
+* ALog  - enumerated log level priorities and format controls.
+
+Optional Extended abstraction classes (files):
+* ALogOut - Output target abstraction to support alternate targets such as private file.
+* ALogFileWriter - Implementation of private output file target.
+* AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
 
 
+***
+Use 
+
+See above API samples, JavaDoc, Code and Demo app for examples of usage. 
+
+
+***
+License
+
+```java
+/*
+ *  Copyright (c) 2017 Dennis Lang (LanDen Labs) landenlabs@gmail.com
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ *  associated documentation files (the "Software"), to deal in the Software without restriction, including
+ *  without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the
+ *  following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in all copies or substantial
+ *  portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+ *  LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ *  NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ *  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ *  @author Dennis Lang  (Jan-2017)
+ *  @see http://landenlabs.com
+ *
+ */
+```
+
+***
+WebSite
+
+Code is provided, documentation and examples provided at these locations:
+
+* https://github.com/landenlabs2/all_Log
+
+* http://www.landenlabs.com/android
