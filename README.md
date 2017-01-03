@@ -28,12 +28,12 @@ Overview
 The core class ALog is an enumeration. Using an enueration restricts memory allocation
 of the class to startup and subsequent use is light-weight singleton.
 
-Core class:
+Core class or enum files:
 * ALog  - enumerated log level priorities and format controls.
-
-Optional Extended abstraction classes (files):
 * ALogOut - Output target abstraction to support alternate targets such as private file.
 * ALogFileWriter - Implementation of private output file target.
+
+Optional Extended abstraction enum file:
 * AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
 
 ***
@@ -190,9 +190,9 @@ AppLog.LOGFILE.e().tag("LogFile").msg("LogFile fixed Test");
 ***
 Install
 
-Since ALog is just a single enumeration class you just need to include the file in your project. 
+Since ALog is just an enumeration pluas two support files you just need to include these files in your project. 
 
-To use the full implemenation copy all four files in the alog subdirectory into your project and tune
+To use the full implemenation copy all four files from the alog subdirectory into your project and tune
 the AppLog enumeration to your needs. 
 
 The private log fie target <b>ALogFileWriter</b> requires initialization to create the file. Call
@@ -213,12 +213,12 @@ Build
 
 No special building is required.  Just include the files in your Android project.
 
-Core class:
+Core class files:
 * ALog  - enumerated log level priorities and format controls.
-
-Optional Extended abstraction classes (files):
 * ALogOut - Output target abstraction to support alternate targets such as private file.
 * ALogFileWriter - Implementation of private output file target.
+
+Optional Extended abstraction class file:
 * AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
 
 

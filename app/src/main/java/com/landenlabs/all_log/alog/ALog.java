@@ -39,17 +39,17 @@ import android.util.Log;
  *     <li>ex(Throwable tr)</li>
  * </ul>
  * <p>
- * Examples:
- * <pre color="red">
+ * <b>Examples:</b>
+ * <br><font color="green">
  *    ALog.d.msg("log this message);
+ * <br>
  *    ALog.e.tag("MyFooClass").fmt("First:%s Last:%s", mFirst, mLast);
+ * <br>
  *    ALog.i.out(ALogFileWriter.Default).tag("FooBar").cat(" ", item.name, item.desc, item.tag);
- * </pre>
- * <p>
- * Different
+ * </font>
  *
  * @see AppLog
- * @authoer Dennis Lang
+ * @author Dennis Lang
  *
  */
 
@@ -57,13 +57,22 @@ public enum ALog {
 
     // Logging levels (2=V, 3=D, 4=I, 5=W 6=E 7=A)
 
-    // Log levels to system log file.
+    // ==== Log levels to system log file.
+
+    /** Verbose log priority level 2 */
     v(ALog.VERBOSE),
+    /** Debug log priority level 3 */
     d(ALog.DEBUG),
+    /** Info log priority level 4 */
     i(ALog.INFO),
+    /** Warning log priority level 5 */
     w(ALog.WARN),
+    /** Error log priority level 6 */
     e(ALog.ERROR),
+    /** Assert log priority level 7 */
     a(ALog.ASSERT),
+
+    /** Disabled log priority level 8 */
     none(ALog.ASSERT+1),
 
     // Log levels to private log file.
@@ -86,14 +95,12 @@ public enum ALog {
     public static final int ASSERT = Log.ASSERT;
 
     /**
-     * Minimum level to log.
+     * Global  Minimum priority level to log, defaults to VERBOSE.
      */
     public static int minLevel = VERBOSE;
 
     private final int mLevel;
     private final ALogOut mOut = new ALogOut();
-
-    // String mTag;
     private static ThreadLocal<String> mThreadTag = new ThreadLocal<String>();
 
 
@@ -109,9 +116,12 @@ public enum ALog {
     /**
      * Replace default output log target with custom output log target.
      * <p>
-     * Ex: ALog.i.out(ALogFileWriter.Default).tag("FooBar").cat(" ", "aaaa", "bbbbb", "ccccc");
-     * @param logPrn
-     * @return
+     * Example:
+     * <br><font color="green">
+     *   ALog.i.out(ALogFileWriter.Default).tag("FooBar").cat(" ", "aaaa", "bbbbb", "ccccc");
+     * </font>
+     * @param logPrn Output print target
+     * @return ALog chained instance
      */
     private ALog out(ALogOut.LogPrinter logPrn) {
         mOut.outPrn = logPrn;
@@ -120,8 +130,8 @@ public enum ALog {
 
     /**
      * Set log tag, if not set or set with empty string, ALog will auto generate a log from stack trace.
-     * @param tagStr
-     * @return
+     * @param tagStr Tag to use in subsequent log printing.
+     * @return ALog chained instance
      *
      * @see #self()
      */
@@ -135,10 +145,11 @@ public enum ALog {
 
     /**
      * Set tag to automatically identify self (class which is calling ALog by stack inspection).
-     * <p>
+     * <br><font color="red">
      * Warning - Stack inspection is very slow.
+     * </font>
      *
-     * @return
+     * @return ALog chained instance
      * @see #tag(String)
      */
     public ALog self() {
@@ -152,20 +163,20 @@ public enum ALog {
     /**
      * If valid log level, Print msg with any previously set tag.
      *
-     * @param msg
+     * @param msgStr  Message to print to log output target
      * @see #minLevel
      */
-    public void msg(String msg) {
+    public void msg(String msgStr) {
         if (mLevel >= minLevel) {
-            println(mLevel, findTag(), msg);
+            println(mLevel, findTag(), msgStr);
         }
     }
 
     /**
      * If valid log level, Print msg with Throwable and any previously set tag.
      *
-     * @param msgStr
-     * @param tr
+     * @param msgStr Message to print to log output target
+     * @param tr Throwable stack trace logged.
      */
     public void msg(String msgStr, Throwable tr) {
         if (mLevel >= minLevel) {
@@ -176,8 +187,8 @@ public enum ALog {
     /**
      * If valid log leve, Print tag and msg.
      *
-     * @param tagStr
-     * @param msgStr
+     * @param tagStr Tag to print to log output target.
+     * @param msgStr Message to print to log output target.
      */
     public void tagMsg(String tagStr, String msgStr) {
         if (mLevel >= minLevel) {
@@ -188,9 +199,13 @@ public enum ALog {
     /**
      * If valid log level, format message and print.
      * <p>
-     * Ex:   AppLog.LOG.d().fmt("First:%s Last:%s", firstName, lastName);
-     * @param fmt
-     * @param args
+     * Example:
+     * <br> <font color="green">
+     *   AppLog.LOG.d().fmt("First:%s Last:%s", firstName, lastName);
+     * </font>
+     *
+     * @param fmt  Format used by String.format to build message to print to log output target.
+     * @param args Optional arguments passed to String.format(fmt, ....)
      */
     public void fmt(String fmt, Object... args) {
         if (mLevel >= minLevel) {
@@ -202,9 +217,15 @@ public enum ALog {
     /**
      * If valid log level, Concatenate strings with <b>separator</b>
      * <p>
-     * Ex:   AppLog.LOG.d().cat(" to ", fromTag, toTag);
-     * @param separator
-     * @param args
+     * Example:
+     * <br><font color="green">
+     *     AppLog.LOG.d().cat(" to ", fromTag, toTag);
+     * <br>
+     *     AppLog.LOG.d().cat(", ", firstName, middleName, lastName);
+     * </font>
+     *
+     * @param separator String place between argument values.
+     * @param args One or more object to stringize.
      */
     public void cat(String separator, Object... args) {
         if (mLevel >= minLevel) {
@@ -224,13 +245,13 @@ public enum ALog {
 
 
     /**
-     * Print (log) tag and message.
+     * Print level, tag and message to output target.
      *
      * @param level
      * @param tag
      * @param msg
      */
-    public void println(int level, String tag, String msg) {
+    private void println(int level, String tag, String msg) {
         mOut.outPrn.println(mLevel, tag, msg);
     }
 
@@ -243,7 +264,7 @@ public enum ALog {
      *
      * @return  "filename:lineNumber"
      */
-    public static String makeTag() {
+    private static String makeTag() {
         String tag = "";
         final StackTraceElement[] ste = Thread.currentThread().getStackTrace();
         for (int idx = 0; idx < ste.length; idx++) {
@@ -265,7 +286,7 @@ public enum ALog {
      * Get previously set <b>tag</b> or generate a tag by inspecting the stacktrace.
      * @return User provided tag or "filename:lineNumber"
      */
-    public String findTag() {
+    private String findTag() {
         String tag = mThreadTag.get();
        return (tag != null) ? tag : makeTag();
     }
