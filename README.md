@@ -1,6 +1,6 @@
 ### Android ALog v1.1
 
-***apk v1.1  available in app directory.***
+***apk v1.1  available in app director to demonstrate and test ALog ***
 
 WebSite
 [http://landenlabs.com/android/alog/index.html](http://landenlabs.com/android/alog/index.html)
@@ -27,6 +27,15 @@ Overview
 
 The core class ALog is an enumeration. Using an enueration restricts memory allocation
 of the class to startup and subsequent use is light-weight singleton.
+
+Core class:
+* ALog  - enumerated log level priorities and format controls.
+
+Optional Extended abstraction classes (files):
+* ALogOut - Output target abstraction to support alternate targets such as private file.
+* ALogFileWriter - Implementation of private file logger target.
+* AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
+
 
 <pre>
 public enum ALog {
