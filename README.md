@@ -48,7 +48,7 @@ ALog is the main log wrapper class which supports the standard priority levels:
 * (7) Assert
 
 
-<pre>
+```java
 public enum ALog {
 
     // Log levels to system log file.
@@ -61,7 +61,7 @@ public enum ALog {
     none(ALog.ASSERT+1),
 
     . . . 
-</pre>
+```
 
 
 ALog enumeration includes chainable methods to configure output.
@@ -78,23 +78,23 @@ ALog.i.tag("catTag").cat(" ", "Info", "Log", "a", "new", "msg"); | I/catTag (pid
 
 To control logging, set the static global minLevel in ALog. 
 
-<pre>
+```java
 File: ALog.java:
 
     /**
      * Minimum level to log.
      */
     public static int minLevel = ALog.VERBOSE;
-</pre>
+```
 
 The logging is <b>active</b> if the calling log level exceeds or is equal to the priority of the minimum global log level.
 
-<pre>
+```java
     ALog.minLevel = ALog.WARN;
     ALog.d.msg("this log is ignored, below min level");
     ALog.w.msg("this log is sent");
     ALog.e.msg("this log is also sent");
-</pre>
+```
 
 The ALog enumeration supports chaining of methods to customize the logging output. 
 The <b>tag</b> and <b>self</b> method set the Tag field which persists between calls within a thread. 
@@ -129,10 +129,10 @@ w.msg("with tag3, msg#2"); | W/tag3 (pid):msg#2
 
 Using following syntax to log an exception:
 
-<pre>
+```java
 Exception ex = new Exception("test exception");
 ALog.e.tr(ex);
-</pre>
+```
 
 ***
 AppLog
@@ -144,7 +144,7 @@ which can be used to log  common actions such as Network access, Parsing XML, Fr
 The AppLog enumeration futher extends the logging flavors by supporting alternate
 logging destinations, such as a private log file or No Logging. 
 
-<pre>
+```java
 public enum AppLog {
 
     /**
@@ -174,7 +174,7 @@ public enum AppLog {
      */
     LOG_PARSING(LogNone),
 
-</pre>
+```
 
 Example of using hire level Application level wrapper which provides flavors of logging which gives
 an added level of abstraction to setup default behavior.
