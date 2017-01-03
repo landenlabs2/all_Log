@@ -46,7 +46,6 @@ import java.util.concurrent.CountDownLatch;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logCat;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logFmt;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logMsg;
-import static com.landenlabs.all_log.alog.ALog.i;
 import static com.landenlabs.all_log.alog.ALog.w;
 import static com.landenlabs.all_log.alog.ALogFileWriter.Default;
 
@@ -86,6 +85,7 @@ public class MainActivity extends Activity
     enum LogTypes {logMsg, logCat, logFmt};
     private LogTypes mType = logMsg;
     private AppLog mAppLog = AppLog.LOG;
+    private boolean mFileLog = false;
 
     // Thread stuff
     private static volatile boolean mThreadRunning = true;
@@ -197,7 +197,7 @@ public class MainActivity extends Activity
         mAsyncLogCat = LogUtil.getAsyncLogCat(mLogCatTv, mLogCatSv);
         AsyncTaskCompat.executeParallel(mAsyncLogCat);
 
-        AppLog.LOGFILE.i().tag("Test-f").msg("LogFile - startup");
+        AppLog.LOGFILE.i().tag("TestFile").msg("Startup");
         mAsyncLogFile = LogUtil.getAsyncReadFile(Default.getFile(), mLogCatTv, mLogCatSv);
         AsyncTaskCompat.executeParallel(mAsyncLogFile);
 
@@ -208,20 +208,20 @@ public class MainActivity extends Activity
      * Test Log API, generate various log messages.
      */
     private void fixedLogTest() {
-        AppLog.LOG.i().tag("Test-l").msg("Log - fixed test");
-        AppLog.LOG_FRAG.i().msg("Frag fixed test");
-        AppLog.LOGFILE.e().tag("Test-f").msg("LogFile - fixed Test");
+        AppLog.LOG.i().tag("TestTag").msg("Log fixed test");
+        AppLog.LOG_FRAG.i().self().msg("Frag fixed test");
+        AppLog.LOGFILE.i().tag("LogFile").msg("LogFile fixed Test");
 
         // Low level - logging samples.
-        ALog.d.msg("#debug log this message");
-        ALog.d.tag("myTag1").msg("#debug log this message");
-        ALog.d.tagMsg("myTag2", "#debug log this message");
-        ALog.e.tag("MyClassTag").fmt("#error First:%s Last:%s", "First", "Last");
-        i.out(Default).tag("FooBar").cat(" ", "Info-", "Log", "to", "a", "file");
+        ALog.i.self().msg("#log info message");
+        ALog.d.tag("myTag1").msg("#log debug message");
+        ALog.w.tagMsg("myTag2", "#log warning message");
+        ALog.e.tag("classTag").fmt("#error FIRST:%s LAST:%s", "first", "last");
+        ALog.i.tag("catTag").cat(" ", "Info", "Log", "a", "new", "msg");
 
-        w.tag("myTag3");
-        w.msg("with tag3, msg1");
-        w.msg("with tag3, msg2");
+        ALog.w.tag("tag3");
+        ALog.w.msg("with tag3, msg#1");
+        w.msg("with tag3, msg#2");
 
         Exception ex = new Exception("test exception");
         ALog.e.tr(ex);
@@ -263,9 +263,11 @@ public class MainActivity extends Activity
 
             case R.id.logRb:
                 mAppLog = AppLog.LOG;
+                mFileLog = false;
                 break;
             case R.id.logfileRb:
                 mAppLog = AppLog.LOGFILE;
+                mFileLog = true;
                 break;
             case R.id.lognetworkRb:
                 mAppLog = AppLog.LOG_NETWORK;
@@ -292,7 +294,6 @@ public class MainActivity extends Activity
      * </pre>
      */
     private void sendAndShowLog() {
-        mAppLog.enabled = mEnabledCb.isChecked();
         int minLevel = (int) mMinLevelSp.getSelectedItemId() + Log.VERBOSE;
         mAppLog.setMinLevel(minLevel);
         final int level = (int) mLevelSp.getSelectedItemId() + Log.VERBOSE;

@@ -56,6 +56,8 @@ import android.util.Log;
 public enum ALog {
 
     // Logging levels (2=V, 3=D, 4=I, 5=W 6=E 7=A)
+
+    // Log levels to system log file.
     v(Log.VERBOSE),
     d(Log.DEBUG),
     i(Log.INFO),
@@ -63,6 +65,14 @@ public enum ALog {
     e(Log.ERROR),
     a(Log.ASSERT),
     none(Log.ASSERT+1),
+
+    // Log levels to private log file.
+    fv(Log.VERBOSE, ALogFileWriter.Default),
+    fd(Log.DEBUG, ALogFileWriter.Default),
+    fi(Log.INFO, ALogFileWriter.Default),
+    fw(Log.WARN, ALogFileWriter.Default),
+    fe(Log.ERROR, ALogFileWriter.Default),
+    fa(Log.ASSERT, ALogFileWriter.Default),
     ;
 
     /**
@@ -81,6 +91,11 @@ public enum ALog {
         mLevel = level;
     }
 
+    ALog(int level, ALogOut.LogPrinter logPrn) {
+        mLevel = level;
+        mOut.outPrn = logPrn;
+    }
+
     /**
      * Replace default output log target with custom output log target.
      * <p>
@@ -88,7 +103,7 @@ public enum ALog {
      * @param logPrn
      * @return
      */
-    public ALog out(ALogOut.LogPrinter logPrn) {
+    private ALog out(ALogOut.LogPrinter logPrn) {
         mOut.outPrn = logPrn;
         return this;
     }

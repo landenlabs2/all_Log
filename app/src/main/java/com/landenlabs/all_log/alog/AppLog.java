@@ -23,7 +23,9 @@
 
 package com.landenlabs.all_log.alog;
 
-import android.content.Context;
+import static com.landenlabs.all_log.alog.AppLog.OutLog.LogFile;
+import static com.landenlabs.all_log.alog.AppLog.OutLog.LogNone;
+import static com.landenlabs.all_log.alog.AppLog.OutLog.LogSys;
 
 /**
  * Application top level logger, defines flavors of logging used to group common activities
@@ -52,68 +54,127 @@ import android.content.Context;
 public enum AppLog {
 
     /**
-     * Global generic logging to android log system.
+     * Logging to android log system.
      */
-    LOG(true),
+    LOG(LogSys),
 
     /**
-     * Global generic logging to a private log file.
+     * Logging to private log file.
      */
-    LOGFILE(true, ALogFileWriter.Default),
+    LOGFILE(LogFile),
 
     // =========== Application specific log flavors ===========
 
     /**
      * General Fragment logging
      */
-    LOG_FRAG(true),
+    LOG_FRAG(LogSys),
 
     /**
-     * General Network activity
+     * General Network activity (currently disabled).
      */
-    LOG_NETWORK(false),
+    LOG_NETWORK(LogNone),
 
     /**
-     * General Parinsg activity.
+     * General Parinsg activity (currently disabled).
      */
-    LOG_PARSING(false),
+    LOG_PARSING(LogNone),
 
     ;
 
-    public boolean enabled;
-    public final ALogOut out = new ALogOut();
 
-    AppLog(boolean b) {
-        enabled = b;
+    enum OutLog {
+        LogSys() ,
+
+        LogFile() {
+            ALog v() {
+                return ALog.fv;
+            }
+            ALog d() {
+                return ALog.fd;
+            }
+            ALog i() {
+                return ALog.fi;
+            }
+            ALog w() {
+                return ALog.fw;
+            }
+            ALog e() {
+                return ALog.fe;
+            }
+            ALog a() {
+                return ALog.fa;
+            }
+        },
+
+        LogNone(){
+            ALog v() {
+                return ALog.none;
+            }
+            ALog d() {
+                return ALog.none;
+            }
+            ALog i() {
+                return ALog.none;
+            }
+            ALog w() {
+                return ALog.none;
+            }
+            ALog e() {
+                return ALog.none;
+            }
+            ALog a() {
+                return ALog.none;
+            }
+        }
+        ;
+
+        ALog v() {
+            return ALog.v;
+        }
+        ALog d() {
+            return ALog.d;
+        }
+        ALog i() {
+            return ALog.i;
+        }
+        ALog w() {
+            return ALog.w;
+        }
+        ALog e() {
+            return ALog.e;
+        }
+        ALog a() {
+            return ALog.a;
+        }
     }
 
-    AppLog(boolean b, ALogOut.LogPrinter outPrn) {
-        enabled = b;
-        out.outPrn = outPrn;
+    OutLog out = LogSys;
+
+    AppLog(OutLog outLog) {
+        out = outLog;
     }
 
-    public void context(Context c) {
-        out.context = c;
-        out.outPrn.open(c);
-    }
 
+    // Logging levels.
+    //
     public ALog v() {
-        return enabled ? ALog.v.out(out.outPrn) : ALog.none;
+        return out.v();
     }
     public ALog d() {
-        return enabled ? ALog.d.out(out.outPrn) : ALog.none;
+        return out.d();
     }
     public ALog i() {
-        return enabled ? ALog.i.out(out.outPrn) : ALog.none;
+        return out.i();
     }
     public ALog w() {
-        return enabled ? ALog.w.out(out.outPrn) : ALog.none;
+        return out.w();
     }
     public ALog e() {
-        return enabled ? ALog.e.out(out.outPrn) : ALog.none;
+        return out.e();
     }
     public ALog a() {
-        return enabled ? ALog.a.out(out.outPrn) : ALog.none;
+        return out.a();
     }
 
     /**

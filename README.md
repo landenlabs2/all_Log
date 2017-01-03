@@ -38,23 +38,40 @@ Network access, Parsing XML, Fragments, etc.
 ***
 Example Syntax
 
-AppLog.LOG.i().tag("Test-l").msg("Log - fixed test");
-AppLog.LOG_FRAG.i().msg("Frag fixed test");
-AppLog.LOGFILE.e().tag("Test-f").msg("LogFile - fixed Test");
+Call | Logged message
+-----| --------------
+ALog.i.self().msg("#log info message");  | /I (MainActivity.java:211)(pid):#log info message
+ALog.d.tag("myTag1").msg("#log debug message");  | D/myTag1 (pid):#log debug message
+ALog.w.tagMsg("myTag2", "#log warning message"); | W/myTag2 (pid):#log warning message
+ALog.e.tag("classTag").fmt("#error FIRST:%s LAST:%s", "first", "last"); | E/classTag (pid):#error FIRST:first LAST:last
+ALog.i.tag("catTag").cat(" ", "Info", "Log", "a", "new", "msg"); | I/catTag (pid):info Log a new msg
 
-// Low level - logging samples.
-ALog.d.msg("#debug log this message");
-ALog.d.tag("myTag1").msg("#debug log this message");
-ALog.d.tagMsg("myTag2", "#debug log this message");
-ALog.e.tag("MyClassTag").fmt("#error First:%s Last:%s", "First", "Last");
-i.out(Default).tag("FooBar").cat(" ", "Info-", "Log", "to", "a", "file");
+Example when Tag set once and default on subsequent calls:
 
-w.tag("myTag3");
-w.msg("with tag3, msg1");
-w.msg("with tag3, msg2");
+Call | Logged message
+-----| --------------
+ALog.w.tag("tag3"); |
+ALog.w.msg("with tag3, msg#1"); | W/tag3 (pid):msg#1
+w.msg("with tag3, msg#2"); | W/tag3 (pid):msg#2
 
+Using following syntax to log an exception:
+
+<pre>
 Exception ex = new Exception("test exception");
 ALog.e.tr(ex);
+</pre>
+
+Example of using hire level Application level wrapper which provides flavors of logging which gives
+an added level of abstraction to setup default behavior.
+
+
+Call | Logged message
+-----| --------------
+AppLog.LOG.i().tag("TestTag").msg("Log fixed test"); |
+AppLog.LOG_FRAG.i().self().msg("Frag fixed test"); |
+AppLog.LOGFILE.e().tag("LogFile").msg("LogFile fixed Test"); |
+
+
 
 ***
 Text Page - shows default fonts and sample sizes:
