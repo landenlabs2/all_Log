@@ -24,6 +24,7 @@
 package com.landenlabs.all_log;
 
 import android.app.Activity;
+import android.content.pm.ApplicationInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.os.AsyncTaskCompat;
@@ -43,9 +44,13 @@ import com.landenlabs.all_log.util.LogUtil;
 
 import java.util.concurrent.CountDownLatch;
 
+import static android.R.id.message;
+import static android.icu.text.Normalizer.NO;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logCat;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logFmt;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logMsg;
+import static com.landenlabs.all_log.alog.ALog.NOLOGGING;
+import static com.landenlabs.all_log.alog.ALog.VERBOSE;
 import static com.landenlabs.all_log.alog.ALog.w;
 import static com.landenlabs.all_log.alog.ALogFileWriter.Default;
 
@@ -208,11 +213,41 @@ public class MainActivity extends Activity
      * Test Log API, generate various log messages.
      */
     private void fixedLogTest() {
+
+        /*
+         * Change code from doing this:
+         */
+        boolean showOldLog = ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
+        final String TAG = getClass().getSimpleName();
+        if (showOldLog) {
+            Log.d(TAG, "old style log message #1");
+        }
+        // ... do more stuff ...
+        if (showOldLog) {
+            Log.d(TAG, "old style log message #2");
+        }
+
+        /*
+         * TO this:
+         */
+        boolean showNewLog = ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
+        AppLog.setMinLevel(showNewLog ? VERBOSE : NOLOGGING);
+
+        AppLog.LOG.d().msg("new style log message #1");
+        // ... do more stuff
+        AppLog.LOG.d().msg("new style log message #2");
+
+
+        // ====== More sample new style logging ====
+
+        // First demo Application named logs.
+        //
         AppLog.LOG.i().tag("TestTag").msg("Log fixed test");
         AppLog.LOG_FRAG.i().self().msg("Frag fixed test");
         AppLog.LOGFILE.i().tag("LogFile").msg("LogFile fixed Test");
 
         // Low level - logging samples.
+        //
         ALog.i.self().msg("#log info message");
         ALog.d.tag("myTag1").msg("#log debug message");
         ALog.w.tagMsg("myTag2", "#log warning message");

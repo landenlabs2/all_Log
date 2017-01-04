@@ -85,7 +85,7 @@ public enum ALog {
     ;
 
     /**
-     * Log levels (priorites)
+     * Log priorite levels.
      */
     public static final int VERBOSE = Log.VERBOSE;
     public static final int DEBUG = Log.DEBUG;
@@ -93,6 +93,7 @@ public enum ALog {
     public static final int WARN = Log.WARN;
     public static final int ERROR = Log.ERROR;
     public static final int ASSERT = Log.ASSERT;
+    public static final int NOLOGGING = Log.ASSERT+1;
 
     /**
      * Global  Minimum priority level to log, defaults to VERBOSE.

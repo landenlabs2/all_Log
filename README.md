@@ -9,7 +9,7 @@ WebSite
 
 ALog is an Android Log wrapper which has the following features:
 
->   1. Small \- Four small classes, only one required.
+>   1. Small \- Four small classes.
 
 >   2. Light weight \- No explict memory allocations. 
 
@@ -35,6 +35,41 @@ Core class or enum files:
 
 Optional Extended abstraction enum file:
 * AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
+
+***
+Change your code from
+
+```java
+// Determine debug state once in main activity.
+// Use flag in code to determine if logging is active. 
+boolean showOldLog = ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
+
+
+// Places in code where logging is required.
+final String TAG = getClass().getSimpleName();
+if (showOldLog) {
+    Log.d(TAG, "old style log message #1");
+}
+// ... do more stuff ...
+if (showOldLog) {
+    Log.d(TAG, "old style log message #2");
+}
+```
+
+To new Style:
+
+```java
+// Determine debug state once in main activity.
+// Use flag in code to determine if logging is active. 
+boolean showNewLog = ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
+AppLog.setMinLevel(showNewLog ? VERBOSE : NOLOGGING);
+
+
+// Places in code where logging is required.
+AppLog.LOG.d().msg("new style log message #1");
+// ... do more stuff
+AppLog.LOG.d().msg("new style log message #2");
+```
 
 ***
 ALog
