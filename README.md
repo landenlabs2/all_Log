@@ -34,7 +34,8 @@ only occur if logging is required.
 9. [Websites] (#website)
 
 ***
-**Overview** <a name="overview"></a>
+<a name="overview"></a>
+**Overview** 
 
 The core class ALog is an enumeration. Using an enueration restricts memory allocation
 of the class to startup and subsequent use is light-weight singleton.
@@ -85,7 +86,8 @@ AppLog.LOG.d().msg("new style log message #2");
 [To Top](#table)
 
 ***
-**ALog** <a name="alog"></a>
+<a name="alog"></a>
+**ALog** 
 
 ALog is the main log wrapper class which supports the standard priority levels:
 * (2) Verbose    
@@ -185,7 +187,8 @@ ALog.e.tr(ex);
 [To Top](#table)
 
 ***
-**AppLog** <a name="applog"></a>
+<a name="applog"></a>
+**AppLog** 
 
 
 This implementation futher extends the logging by wrapping ALog in another 
@@ -240,7 +243,8 @@ AppLog.LOGFILE.e().tag("LogFile").msg("LogFile fixed Test");
 [To Top](#table)
 
 ***
-**Install** <a name="install"></a>
+<a name="install"></a>
+**Install** 
 
 Since ALog is just an enumeration plus support files you just need to include these files in your project. 
 
@@ -263,7 +267,8 @@ init(Context) on this class in your startup code.
 [To Top](#table)
 
 ***
-**Build** <a name="build"></a>
+<a name="build"></a>
+**Build** 
 
 No special building is required.  Just include the files in your Android project.
 
@@ -278,14 +283,16 @@ Optional Extended abstraction class file:
 [To Top](#table)
 
 ***
-**Use** <a name="use"></a>
+<a name="use"></a>
+**Use** 
 
 See above API samples, JavaDoc, Code and Demo app for examples of usage. 
 
 [To Top](#table)
 
 ***
-**License** <a name="license"></a>
+<a name="license"></a>
+**License** 
 
 ```java
 /*
@@ -315,7 +322,8 @@ See above API samples, JavaDoc, Code and Demo app for examples of usage.
 [To Top](#table)
 
 ***
-**WebSite** <a name="website"></a>
+<a name="website"></a>
+**WebSite** 
 
 Code is provided, documentation and examples provided at these locations:
 
