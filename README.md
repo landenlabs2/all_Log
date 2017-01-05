@@ -21,7 +21,7 @@ only occur if logging is required.
 
 >   5. ThreadSafe \- Logs can be generated in concurrent threads.
 
-
+<a name="table"></a>
 #Table of Contents
 1. [Overview] (#overview)
 2. [Code change] (#change)
@@ -81,6 +81,8 @@ AppLog.LOG.d().msg("new style log message #1");
 // ... do more stuff
 AppLog.LOG.d().msg("new style log message #2");
 ```
+
+[To Top](#table)
 
 ***
 **ALog** <a name="alog"></a>
@@ -180,6 +182,8 @@ Exception ex = new Exception("test exception");
 ALog.e.tr(ex);
 ```
 
+[To Top](#table)
+
 ***
 **AppLog** <a name="applog"></a>
 
@@ -233,6 +237,8 @@ AppLog.LOG_FRAG.i().self().msg("Frag fixed test");
 AppLog.LOGFILE.e().tag("LogFile").msg("LogFile fixed Test");
 ```
 
+[To Top](#table)
+
 ***
 **Install** <a name="install"></a>
 
@@ -254,6 +260,8 @@ init(Context) on this class in your startup code.
         ALogFileWriter.init(this);
 ```
 
+[To Top](#table)
+
 ***
 **Build** <a name="build"></a>
 
@@ -267,12 +275,14 @@ Core class files:
 Optional Extended abstraction class file:
 * AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
 
+[To Top](#table)
 
 ***
 **Use** <a name="use"></a>
 
 See above API samples, JavaDoc, Code and Demo app for examples of usage. 
 
+[To Top](#table)
 
 ***
 **License** <a name="license"></a>
@@ -302,6 +312,8 @@ See above API samples, JavaDoc, Code and Demo app for examples of usage.
  */
 ```
 
+[To Top](#table)
+
 ***
 **WebSite** <a name="website"></a>
 
@@ -310,3 +322,5 @@ Code is provided, documentation and examples provided at these locations:
 * https://github.com/landenlabs2/all_Log
 
 * http://www.landenlabs.com/android
+
+[To Top](#table)
