@@ -22,8 +22,19 @@ only occur if logging is required.
 >   5. ThreadSafe \- Logs can be generated in concurrent threads.
 
 
+#Table of Contents
+1. [Overview] (#overview)
+2. [Code change] (#change)
+3. [ALog] (#alog)
+4. [AppLog] (#applog)
+5. [Install] (#install)
+6. [Build] (#build)
+7. [Use] (#use)
+8. [License] (#license)
+9. [Websites] (#website)
+
 ***
-Overview
+**Overview** <a name="overview"></a>
 
 The core class ALog is an enumeration. Using an enueration restricts memory allocation
 of the class to startup and subsequent use is light-weight singleton.
@@ -37,7 +48,7 @@ Optional Extended abstraction enum file:
 * AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
 
 ***
-Change your code from
+Change your code from <a name="change"></a>
 
 ```java
 // Determine debug state once in main activity.
@@ -72,7 +83,7 @@ AppLog.LOG.d().msg("new style log message #2");
 ```
 
 ***
-ALog
+**ALog** <a name="alog"></a>
 
 ALog is the main log wrapper class which supports the standard priority levels:
 * (2) Verbose    
@@ -170,7 +181,7 @@ ALog.e.tr(ex);
 ```
 
 ***
-AppLog
+**AppLog** <a name="applog"></a>
 
 
 This implementation futher extends the logging by wrapping ALog in another 
@@ -223,9 +234,9 @@ AppLog.LOGFILE.e().tag("LogFile").msg("LogFile fixed Test");
 ```
 
 ***
-Install
+**Install** <a name="install"></a>
 
-Since ALog is just an enumeration pluas two support files you just need to include these files in your project. 
+Since ALog is just an enumeration plus support files you just need to include these files in your project. 
 
 To use the full implemenation copy all four files from the alog subdirectory into your project and tune
 the AppLog enumeration to your needs. 
@@ -244,7 +255,7 @@ init(Context) on this class in your startup code.
 ```
 
 ***
-Build
+**Build** <a name="build"></a>
 
 No special building is required.  Just include the files in your Android project.
 
@@ -258,13 +269,13 @@ Optional Extended abstraction class file:
 
 
 ***
-Use 
+**Use** <a name="use"></a>
 
 See above API samples, JavaDoc, Code and Demo app for examples of usage. 
 
 
 ***
-License
+**License** <a name="license"></a>
 
 ```java
 /*
@@ -292,7 +303,7 @@ License
 ```
 
 ***
-WebSite
+**WebSite** <a name="website"></a>
 
 Code is provided, documentation and examples provided at these locations:
 
