@@ -1,6 +1,6 @@
 ### Android ALog v1.1
 
-***apk v1.1  available in app director to demonstrate and test ALog ***
+***apk v1.1  Available in dist directgory to demonstrate and test ALog ***
 
 WebSite
 [http://landenlabs.com/android/alog/index.html](http://landenlabs.com/android/alog/index.html)
