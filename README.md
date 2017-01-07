@@ -1,4 +1,5 @@
-### Android ALog v1.1
+### ALog - by LanDen Labs 
+Android ALog - Enhanced Log Wrapper
 
 ***apk v1.1  Available in dist directgory to demonstrate and test ALog ***
 
