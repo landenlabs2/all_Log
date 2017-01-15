@@ -44,8 +44,6 @@ import com.landenlabs.all_log.util.LogUtil;
 
 import java.util.concurrent.CountDownLatch;
 
-import static android.R.id.message;
-import static android.icu.text.Normalizer.NO;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logCat;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logFmt;
 import static com.landenlabs.all_log.MainActivity.LogTypes.logMsg;

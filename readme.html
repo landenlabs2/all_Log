@@ -58,6 +58,7 @@ See GitHub: <a href="https://github.com/landenlabs2/all_Log">https://github.com/
 <p>
 <img src="http://landenlabs.com//android/alog/alog.png" alt="ALog" />
 
+<a name="intro"></a>
 <p>
 ALog is an Android Log wrapper which has the following features:
 
@@ -73,8 +74,23 @@ ALog is an Android Log wrapper which has the following features:
 </ol>
 
 <hr>
-
+<a name="contents"></a>
+Contents
+<ul>
+<li><a href="#overview">Overview</a>
+<li><a href="#alog">ALog</a>
+<li><a href="#applog">AppLog</a>
+<li><a href="#install">Install</a>
+<li><a href="#build">Builld</a>
+<li><a href="#use">Use</a>
+<li><a href="#license">License</a>
+<li><a href="#website">WebSite</a>
+                                    
+</ul>
 <p>
+    
+<hr>
+<a name="overview"></a>
 Overview
 
 <p>
@@ -128,10 +144,12 @@ AppLog.LOG.d().msg("new style log message #1");
 // ... do more stuff
 AppLog.LOG.d().msg("new style log message #2");
 </code></pre>
-
-<hr>
-
 <p>
+<a href="#contents">[Top]</a>
+<p>
+    
+<hr>
+<a name="alog"></a>
 ALog
 
 <p>
@@ -235,10 +253,14 @@ This avoids wasting time and memory formating strings only to be discarded.
 <pre><code class="java language-java">Exception ex = new Exception("test exception");
 ALog.e.tr(ex);
 </code></pre>
+<p>
+<a href="#contents">[Top]</a>
+<p>
 
-<hr />
 
-<p>AppLog
+<hr>
+<a name="applog"></a>
+AppLog
 
 <p>This implementation futher extends the logging by wrapping ALog in another 
 enumeration called <b>AppLog</b>.  The AppLog enumeration is used to create and manage named loggers
@@ -284,10 +306,13 @@ an added level of abstraction to setup default behavior.
 AppLog.LOG_FRAG.i().self().msg("Frag fixed test");
 AppLog.LOGFILE.e().tag("LogFile").msg("LogFile fixed Test");
 </code></pre>
-
-<hr />
-
-<p>Install
+<p>
+<a href="#contents">[Top]</a>
+<p>
+   
+<hr>
+<a name="install"></a>
+Install
 
 <p>Since ALog is just an enumeration pluas two support files you just need to include these files in your project. 
 
@@ -305,10 +330,13 @@ protected void onCreate(Bundle savedInstanceState) {
     // Initialize ALog private log file target.
     ALogFileWriter.init(this);
 </code></pre>
-
-<hr />
-
-<p>Build
+<p>
+<a href="#contents">[Top]</a>
+<p>
+    
+<hr>
+<a name="build"></a>
+Build
 
 <p>No special building is required.  Just include the files in your Android project.
 
@@ -327,16 +355,22 @@ protected void onCreate(Bundle savedInstanceState) {
 <ul>
 <li>AppLog - Enumeration to manage <b>named</b> logging instances which can have different targets.
 </ul>
-
-<hr />
-
-<p>Use 
+<p>
+<a href="#contents">[Top]</a>
+<p>
+    
+<hr>
+<a name="use"></a>
+Use 
 
 <p>See above API samples, JavaDoc, Code and Demo app for examples of usage. 
-
-<hr />
-
-<p>License
+<p>
+<a href="#contents">[Top]</a>
+<p>
+    
+<hr>
+<a name="license"></a>
+License
 
 <pre><code class="java language-java">/*
  *  Copyright (c) 2017 Dennis Lang (LanDen Labs) landenlabs@gmail.com
@@ -361,23 +395,23 @@ protected void onCreate(Bundle savedInstanceState) {
  *
  */
 </code></pre>
-
-<hr />
-
-<p>WebSite
+<p>
+<a href="#contents">[Top]</a>
+<p>
+    
+<hr>
+<a name="website"></a>
+WebSite
 
 <p>Code is provided, documentation and examples provided at these locations:
 
 <ul>
-<li><p>https://github.com/landenlabs2/all_Log
-
-<li><p>http://www.landenlabs.com/android
+<li><a href="https://github.com/landenlabs2/all_Log">https://github.com/landenlabs2/all_Log</a>
+<li><a href="http://www.landenlabs.com/android">http://www.landenlabs.com/android</a>
 </ul>
     
 <p>
-&nbsp;
-<p>
-<a href="#top"> To Top </a>
+<a href="#contents">[Top]</a>
 <p> 
 
 

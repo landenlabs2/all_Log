@@ -28,12 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginRight="10dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/paper_dark"
+            android:background="@drawable/paper_dark_tile"
             android:orientation="vertical">
 
             <TextView
@@ -44,12 +45,12 @@
                 android:textStyle="bold" />
 
             <CheckBox
-                android:visibility="gone"
                 android:id="@+id/enabledCb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Enabled" />
+                android:text="Enabled"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/levelGrp"
@@ -326,28 +327,23 @@
         android:background="@android:color/white" />
 
     <ScrollView
+        android:background="@drawable/paper_light_tile"
         android:id="@+id/status_sv"
-        android:visibility="gone"
         style="@style/scrollbar_shape_style"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginRight="10dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:visibility="gone">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/logcatTv"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/paper_lilght">
-
-            <TextView
-                android:id="@+id/logcatTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text=""
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text=""
+            android:textColor="@android:color/black" />
 
     </ScrollView>
 
